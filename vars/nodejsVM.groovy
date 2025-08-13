@@ -84,7 +84,8 @@ pipeline {
         }
         stage('Build Job: catalogue-deploy') {
             when {
-                expression {params.deploy == true}
+                // expression {params.deploy == true}
+                expression {params.deploy}
             }
             steps {
                 build job: 'catalogue-deploy', wait: true,
