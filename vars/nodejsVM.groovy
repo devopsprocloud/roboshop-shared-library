@@ -1,3 +1,4 @@
+def call(map configMap){
 pipeline {
     agent {
         node {
@@ -107,4 +108,5 @@ pipeline {
             echo 'Pipeline executed successfully'
         }
     }
+}
 }
