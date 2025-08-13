@@ -15,7 +15,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     parameters {
-        booleanParam(name: 'deploy', defaultValue: 'true', description: 'Enable to deploy catalogue')
+        booleanParam(name: 'deploy', defaultValue: 'false', description: 'Enable to deploy catalogue')
     }
     stages {
         stage('Get the package version') {
@@ -88,7 +88,7 @@ pipeline {
                 expression {params.deploy}
             }
             steps {
-                build job: '../catalogue-deploy', wait: true,
+                build job: '../catalogue-deploy', wait: true, propagate: false,
                 parameters: [
                     string(name: 'version', value: "${packageVersion}"),
                     string(name: 'environment', value: 'dev')
