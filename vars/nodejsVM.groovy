@@ -15,7 +15,7 @@ pipeline {
         disableConcurrentBuilds()
     }
     parameters {
-        booleanParam(name: 'deploy', defaultValue: 'false', description: 'Enable to deploy catalogue')
+        booleanParam(name: 'deploy', defaultValue: 'true', description: 'Enable to deploy catalogue')
     }
     stages {
         stage('Get the package version') {
