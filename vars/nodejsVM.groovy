@@ -82,36 +82,36 @@ def call(Map configMap) {
                     )
                 }
             }
-            // stage('Build Job: catalogue-deploy') {
-            //     when {
-            //         // expression {params.deploy == true}
-            //         expression {params.deploy}
-            //     }
-            //     steps {
-            //         build job: '../catalogue-deploy', wait: true,   
-            //             parameters: [
-            //             string(name: 'version', value: "${packageVersion}"),
-            //             string(name: 'environment', value: 'dev')
-            //         ]         
-            //     }
-                        
-            //     }
-            // }
             stage('Build Job: catalogue-deploy') {
                 when {
-                    expression { params.deploy }
+                    // expression {params.deploy == true}
+                    expression {params.deploy}
                 }
                 steps {
-                    build(
-                        job: '../catalogue-deploy',
-                        wait: true,
+                    build job: '../catalogue-deploy', wait: true,   
                         parameters: [
-                            string(name: 'version', value: "${packageVersion}"),
-                            string(name: 'environment', value: 'dev')
-                        ]
-                    )
+                        string(name: 'version', value: "${packageVersion}"),
+                        string(name: 'environment', value: 'dev')
+                    ]         
+                }
+                        
                 }
             }
+            // stage('Build Job: catalogue-deploy') {
+            //     when {
+            //         expression { params.deploy }
+            //     }
+            //     steps {
+            //         build(
+            //             job: '../catalogue-deploy',
+            //             wait: true,
+            //             parameters: [
+            //                 string(name: 'version', value: "${packageVersion}"),
+            //                 string(name: 'environment', value: 'dev')
+            //             ]
+            //         )
+            //     }
+            // }
         }
         post { 
             always { 
