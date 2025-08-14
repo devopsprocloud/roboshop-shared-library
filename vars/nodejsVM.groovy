@@ -1,4 +1,4 @@
-def call(Map configMap){
+def call(Map configMap) {
     pipeline {
         agent {
             node {
@@ -99,17 +99,20 @@ def call(Map configMap){
             // }
             stage('Build Job: catalogue-deploy') {
                 when {
-                    expression { params.deploy }  // or params.deploy == 'apply'
+                    expression { params.deploy }
                 }
                 steps {
-                    build job: '../catalogue-deploy',
+                    build(
+                        job: '../catalogue-deploy',
                         wait: true,
                         parameters: [
                             string(name: 'version', value: "${packageVersion}"),
                             string(name: 'environment', value: 'dev')
                         ]
-                    }
+                    )
                 }
+            }
+        }
         post { 
             always { 
                 echo 'Deleting the directory'
@@ -121,7 +124,6 @@ def call(Map configMap){
             success {
                 echo 'Pipeline executed successfully'
             }
-        }
         }
     }
 }
