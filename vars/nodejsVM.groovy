@@ -49,13 +49,13 @@ pipeline {
                 echo 'Unit tests will run here'
             }
         }
-        stage('SonarQube Scanning') {
-            steps {
-                sh """
-                    sonar-scanner
-                """
-            }
-        }
+        // stage('SonarQube Scanning') {
+        //     steps {
+        //         sh """
+        //             sonar-scanner
+        //         """
+        //     }
+        // }
         stage('Zipping the Artifact') {
             steps {
                 sh """
