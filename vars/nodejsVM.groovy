@@ -82,7 +82,7 @@ def call(Map configMap) {
                     )
                 }
             }
-            stage("${configMap.component}-Deploy") {
+            stage('Deploy') {
                 when {
                     // expression {params.deploy == true}
                     expression {params.create == true }
