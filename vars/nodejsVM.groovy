@@ -95,7 +95,6 @@ def call(Map configMap) {
                     ]         
                 }
                         
-                }
             }
             // stage('Build Job: catalogue-deploy') {
             //     when {
