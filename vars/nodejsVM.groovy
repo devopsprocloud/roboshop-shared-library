@@ -82,21 +82,34 @@ pipeline {
                 )
             }
         }
+        // stage('Build Job: catalogue-deploy') {
+        //     when {
+        //         // expression {params.deploy == true}
+        //         expression {params.deploy}
+        //     }
+        //     steps {
+        //         build job: '../catalogue-deploy', wait: true,   
+        //             parameters: [
+        //             string(name: 'version', value: "${packageVersion}"),
+        //             string(name: 'environment', value: 'dev')
+        //         ]         
+        //     }
+                    
+        //     }
+        // }
         stage('Build Job: catalogue-deploy') {
             when {
-                // expression {params.deploy == true}
-                expression {params.deploy}
+                expression { params.deploy }  // or params.deploy == 'apply'
             }
             steps {
-                build job: '../catalogue-deploy', wait: true,   
+                build job: '../catalogue-deploy',
+                    wait: true,
                     parameters: [
-                    string(name: 'version', value: "${packageVersion}"),
-                    string(name: 'environment', value: 'dev')
-                ]         
+                        string(name: 'version', value: "${packageVersion}"),
+                        string(name: 'environment', value: 'dev')
+                    ]
+                }
             }
-                    
-            }
-        }
     post { 
         always { 
             echo 'Deleting the directory'
