@@ -15,7 +15,7 @@ def call(Map configMap) {
             disableConcurrentBuilds()
         }
         parameters {
-            booleanParam(name: 'deploy', defaultValue: 'false', description: 'Enable to deploy catalogue')
+            booleanParam(name: 'create', defaultValue: 'false', description: 'Enable to create catalogue')
         }
         stages {
             stage('Get the package version') {
@@ -85,7 +85,7 @@ def call(Map configMap) {
             stage('Build Job: catalogue-deploy') {
                 when {
                     // expression {params.deploy == true}
-                    expression {params.deploy == 'true' }
+                    expression {params.create == 'true' }
                 }
                 steps {
                     build job: "../${configMap.component}-deploy", wait: true,   
