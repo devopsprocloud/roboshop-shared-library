@@ -85,7 +85,7 @@ def call(Map configMap) {
             stage('Build Job: catalogue-deploy') {
                 when {
                     // expression {params.deploy == true}
-                    expression {params.deploy}
+                    expression {params.deploy == 'true' }
                 }
                 steps {
                     build job: "../${configMap.component}-deploy", wait: true,   
