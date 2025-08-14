@@ -59,7 +59,7 @@ def call(Map configMap) {
             stage('Zipping the Artifact') {
                 steps {
                     sh """
-                        zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+                        zip -q -r "${configMap.component}.zip" ./* -x ".git" -x "*.zip"
                     """
                 }
             }
@@ -82,7 +82,7 @@ def call(Map configMap) {
                     )
                 }
             }
-            stage('Build Job: catalogue-deploy') {
+            stage("Build Job: ${configMap.component}-deploy") {
                 when {
                     // expression {params.deploy == true}
                     expression {params.create == true }
