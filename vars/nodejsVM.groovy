@@ -71,12 +71,12 @@ def call(Map configMap) {
                         nexusUrl: "${nexusURL}",
                         groupId: 'com.roboshop',
                         version: "${packageVersion}",
-                        repository: 'catalogue',
+                        repository: "${configMap.component}",
                         credentialsId: 'nexus-auth',
                         artifacts: [
-                            [artifactId: 'catalogue',
+                            [artifactId: "${configMap.component}",
                             classifier: '',
-                            file: 'catalogue.zip',
+                            file: "${configMap.component}.zip",
                             type: 'zip']
                         ]
                     )
@@ -88,7 +88,7 @@ def call(Map configMap) {
                     expression {params.deploy}
                 }
                 steps {
-                    build job: '../catalogue-deploy', wait: true,   
+                    build job: "../${configMap.component}-deploy", wait: true,   
                         parameters: [
                         string(name: 'version', value: "${packageVersion}"),
                         string(name: 'environment', value: 'dev')
@@ -96,21 +96,6 @@ def call(Map configMap) {
                 }
                         
             }
-            // stage('Build Job: catalogue-deploy') {
-            //     when {
-            //         expression { params.deploy }
-            //     }
-            //     steps {
-            //         build(
-            //             job: '../catalogue-deploy',
-            //             wait: true,
-            //             parameters: [
-            //                 string(name: 'version', value: "${packageVersion}"),
-            //                 string(name: 'environment', value: 'dev')
-            //             ]
-            //         )
-            //     }
-            // }
         }
         post { 
             always { 
