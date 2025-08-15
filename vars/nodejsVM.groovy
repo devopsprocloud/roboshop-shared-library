@@ -15,7 +15,7 @@ def call(Map configMap) {
             disableConcurrentBuilds()
         }
         parameters {
-            booleanParam(name: 'Deploy', defaultValue: 'false', description: 'Enable to Deploy catalogue')
+            booleanParam(name: 'Deploy', defaultValue: 'false', description: 'Enable to Deploy')
         }
         stages {
             stage('Get the package version') {
