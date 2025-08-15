@@ -8,7 +8,7 @@ def call(Map configMap) {
         environment {
             packageVersion = ''
             environment = ''
-            nexusURL = '172.31.37.6:8081'
+            nexusURL = '172.31.46.179:8081'
         }
         options {
             ansiColor('xterm')
